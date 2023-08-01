@@ -74,8 +74,7 @@
     position: absolute;
     color: yellow;
     font-size: 24px;
-    /* Set the position based on your requirements */
-    /* Example: bottom: 10px; left: 50%; transform: translateX(-50%); */
+    
   }
   </style>
   
