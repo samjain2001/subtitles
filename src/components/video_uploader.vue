@@ -26,7 +26,7 @@
   
         try {
           // Send video to Flask backend for processing
-          const response = await axios.post('/api/upload', formData);
+          await axios.post('/api/upload', formData);
           // Handle the response if needed (e.g., show success message)
         } catch (error) {
           console.error('Error uploading video:', error);
