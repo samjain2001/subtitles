@@ -1,21 +1,15 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
-import VueRouter from 'vue-router';
-import Home from './views/Home.vue';
-
-Vue.config.productionTip = false;
-
-Vue.use(VueRouter);
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from './views/Home_view.vue';
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: HomeView },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHistory(),
   routes,
 });
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app');
+createApp(App).use(router).mount('#app');
