@@ -6,8 +6,8 @@
   </template>
   
   <script>
-  import VideoUploader from '../components/VideoUploader.vue';
-  import VideoPlayer from '../components/VideoPlayer.vue';
+  import VideoUploader from '../components/video_uploader.vue';
+  import VideoPlayer from '../components/video_player.vue';
   
   export default {
     components: {
