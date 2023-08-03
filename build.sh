@@ -1,5 +1,5 @@
-sudo apt-get update
-sudo apt-get install -y imagemagick
+echo "imagemagick" >> /etc/environment
+
 pip install -r requirements.txt
 
 pip install Flask
