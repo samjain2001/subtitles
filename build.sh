@@ -1,10 +1,6 @@
-#!/bin/bash
 
-# Create and activate a virtual environment
-python3.9 -m venv venv
-source venv/bin/activate
-
-# Install the dependencies
-pip install -r requirements.txt
+python3 -m venv env
+source env/bin/activate
+pip install -- upgrade pip
 pip install flask
-# Start your Flask app
+pip install -r requirements.txt
