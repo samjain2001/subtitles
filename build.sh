@@ -5,5 +5,4 @@ pip install -r requirements.txt
 
 pip install Flask
 pip show Flask
-python /opt/render/project/src/generation.py
 
