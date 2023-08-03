@@ -16,6 +16,9 @@ source venv/bin/activate
 echo "Installing Python dependencies..."
 pip install -r requirements.txt
 
+pip install flask
+
+
 # Step 4: Deactivate virtual environment
 deactivate
 
