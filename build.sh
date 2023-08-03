@@ -11,7 +11,7 @@ npm run build
 echo "Creating and activating virtual environment..."
 python3.9 -m venv venv
 source venv/bin/activate
-
+pip install python3.9
 # Step 3: Install Python dependencies
 echo "Installing Python dependencies..."
 pip install -r requirements.txt
