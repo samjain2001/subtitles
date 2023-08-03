@@ -8,17 +8,17 @@
 echo "Creating and activating virtual environment..."
 python3.9 -m venv venv
 source venv/bin/activate
-pip install python@3.9
+
 # Step 3: Install Python dependencies
 echo "Installing Python dependencies..."
 pip install -r requirements.txt
 
-pip install Flask==2.1.0
-pip install moviepy==1.0.3
-pip install Flask-WTF==1.0.0
-pip install Werkzeug==2.0.1
-pip install deepgram==2.3.0
-pip install pysrt==1.1.2
+pip install Flask
+pip install moviepy
+pip install Flask-WTF
+pip install Werkzeug
+pip install deepgram
+pip install pysrt
 
 
 # Step 4: Deactivate virtual environment
