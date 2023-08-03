@@ -11,14 +11,10 @@ source venv/bin/activate
 
 # Step 3: Install Python dependencies
 echo "Installing Python dependencies..."
+pip install Flask
+
 pip install -r requirements.txt
 
-pip install Flask
-pip install moviepy
-pip install Flask-WTF
-pip install Werkzeug
-pip install deepgram
-pip install pysrt
 
 
 # Step 4: Deactivate virtual environment
