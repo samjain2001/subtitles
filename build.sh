@@ -8,4 +8,3 @@ source venv/bin/activate
 pip install -r requirements.txt
 pip install flask
 # Start your Flask app
-python generation.py
