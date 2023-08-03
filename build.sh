@@ -1,4 +1,4 @@
-echo "imagemagick" >> /etc/environment
+echo "imagemagick" >> ~/apt.txt
 
 pip install -r requirements.txt
 
