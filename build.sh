@@ -3,15 +3,12 @@
 # Build script for your project
 
 # Step 1: Build frontend assets
-echo "Building frontend assets..."
-npm install
-npm run build
 
 # Step 2: Create and activate virtual environment
 echo "Creating and activating virtual environment..."
 python3.9 -m venv venv
 source venv/bin/activate
-pip install python3.9
+pip install python@3.9
 # Step 3: Install Python dependencies
 echo "Installing Python dependencies..."
 pip install -r requirements.txt
