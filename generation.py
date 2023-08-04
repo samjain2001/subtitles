@@ -68,6 +68,10 @@ def processFile(filePath):
     print('output filename')
     print(op_file)
 
+    output_video_file = 'static/files/output.mp4'  # Define output_video_file here
+    mp4filename = filePath
+    srtfilename = op_file
+
     def convert_to_srt(data, op_file):
         def format_time(seconds):
             hours, remainder = divmod(seconds, 3600)
@@ -100,9 +104,6 @@ def processFile(filePath):
 
     final_video.fps = video.fps
 
-    output_video_file = 'static/files/output.mp4'
-    print("Output file name: ", output_video_file)
- 
     ffmpeg_logger = logging.getLogger("FFMPEG")
     ffmpeg_logger.setLevel(logging.DEBUG)
     
