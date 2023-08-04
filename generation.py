@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
 import os
+import logging
 from wtforms.validators import InputRequired
 from deepgram import Deepgram
 import json
@@ -99,8 +100,21 @@ def processFile(filePath):
     output_video_file = 'static/files/output.mp4'
     print("Output file name: ", output_video_file)
  
-
-    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac",logger=get_setting("FFMPEG_LOGGER"))
+    ffmpeg_logger = logging.getLogger("FFMPEG")
+    ffmpeg_logger.setLevel(logging.DEBUG)
+    
+    # Create a stream handler and set the level to DEBUG
+    ffmpeg_handler = logging.StreamHandler()
+    ffmpeg_handler.setLevel(logging.DEBUG)
+    
+    # Create a formatter and set it for the handler
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    ffmpeg_handler.setFormatter(formatter)
+    
+    # Add the handler to the logger
+    ffmpeg_logger.addHandler(ffmpeg_handler)
+    
+    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac")
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
