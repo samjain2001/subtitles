@@ -95,26 +95,23 @@ def processFile(filePath):
     video = VideoFileClip(mp4filename)
     subtitles = pysrt.open(srtfilename)
     subtitle_clips = create_subtitle_clips(subtitles, video.size)
+
+    # Update ffmpeg_params for video processing
+    output_video_file = 'static/files/output.mp4'
     ffmpeg_params = [
-        "-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-", "-c:v", "libx264",
-        "-crf", "18", "-preset", "slow", output_video_file
+        "-y", "-f", "image2pipe", "-c:v", "png", "-r", str(video.fps), "-i", "-",
+        "-c:v", "libx264", "-crf", "18", "-preset", "slow", "-c:a", "aac", "-strict", "experimental", output_video_file
     ]
+
     # Concatenate the subtitle clips with the original video
     final_video = CompositeVideoClip([video] + subtitle_clips, size=video.size).set_audio(video.audio)
-
     final_video.fps = video.fps
 
-    
-
-    # Set the output video file path
-    output_video_file = 'static/files/output.mp4'
-
-    # Define ffmpeg parameters for video processing
-    ffmpeg_params = [
-        "-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-",
-        "-c:v", "libx264", "-crf", "18", "-preset", "slow", output_video_file
-    ]
-    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac", temp_audiofile="temp-audio.m4a", remove_temp=True, ffmpeg_params=ffmpeg_params)
+    # Write the final video file
+    final_video.write_videofile(
+        output_video_file, codec="libx264", audio_codec="aac",
+        temp_audiofile="temp-audio.m4a", remove_temp=True, ffmpeg_params=ffmpeg_params
+    )
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
