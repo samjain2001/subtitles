@@ -94,6 +94,8 @@ def processFile(filePath):
 
     output_video_file = 'static/files/output.mp4'
     print("Output file name: ", output_video_file)
+    font_directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static')  # Assuming the Arial font files are directly inside the "static" folder
+    os.environ['MAGICK_FONT_PATH'] = font_directory
 
     final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac")
 
