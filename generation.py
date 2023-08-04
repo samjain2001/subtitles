@@ -112,7 +112,7 @@ def processFile(filePath):
     # Write the final video file
     final_video.write_videofile(
     output_video_file,
-    codec="libx264", audio_codec="aac",
+    codec="mpeg4", audio_codec="aac",
     temp_audiofile="temp-audio.m4a", remove_temp=True,
     ffmpeg_params=ffmpeg_params
 )
