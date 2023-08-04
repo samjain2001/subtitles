@@ -16,6 +16,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['UPLOAD_FOLDER'] = 'static/files'
 
+font_directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static')
+os.environ['MAGICK_FONT_PATH'] = font_directory
+
 class UploadFileForm(FlaskForm):
     file = FileField("File", validators=[InputRequired()])
     submit = SubmitField("Upload File")
@@ -24,14 +27,15 @@ def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
 def create_subtitle_clips(subtitles, videosize, fontsize=24, font='Arial', color='yellow', debug=False):
+    font_with_path = os.path.join(font_directory, font)
     subtitle_clips = []
-
+    
     for subtitle in subtitles:
         start_time = time_to_seconds(subtitle.start)
         end_time = time_to_seconds(subtitle.end)
         duration = end_time - start_time
         video_width, video_height = videosize
-        text_clip = TextClip(subtitle.text, fontsize=fontsize, font=font, color=color, bg_color='black', size=(video_width * 3 / 4, None), method='caption').set_start(start_time).set_duration(duration)
+        text_clip = TextClip(subtitle.text, fontsize=fontsize, font=font_with_path, color=color, bg_color='black', size=(video_width * 3 / 4, None), method='caption').set_start(start_time).set_duration(duration)
         subtitle_x_position = 'center'
         subtitle_y_position = video_height * 4 / 5
         text_position = (subtitle_x_position, subtitle_y_position)
@@ -94,8 +98,7 @@ def processFile(filePath):
 
     output_video_file = 'static/files/output.mp4'
     print("Output file name: ", output_video_file)
-    font_directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static')  # Assuming the Arial font files are directly inside the "static" folder
-    os.environ['MAGICK_FONT_PATH'] = font_directory
+ 
 
     final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac")
 
