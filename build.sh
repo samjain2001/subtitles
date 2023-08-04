@@ -1,5 +1,6 @@
 echo "imagemagick" >> ~/apt.txt
 echo "imagemagick" >> /etc/environment
+which ffmpeg
 pip install -r requirements.txt
 apt-get update
 apt-get install -y imagemagick
