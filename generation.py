@@ -106,19 +106,23 @@ def processFile(filePath):
 
     ffmpeg_logger = logging.getLogger("FFMPEG")
     ffmpeg_logger.setLevel(logging.DEBUG)
-    
-    # Create a stream handler and set the level to DEBUG
+
     ffmpeg_handler = logging.StreamHandler()
     ffmpeg_handler.setLevel(logging.DEBUG)
-    
-    # Create a formatter and set it for the handler
+
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     ffmpeg_handler.setFormatter(formatter)
-    
-    # Add the handler to the logger
-    ffmpeg_logger.addHandler(ffmpeg_handler)
-    ffmpeg_params = ["-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-", "-c:v", "libx264", "-crf", "18", "-preset", "slow", output_video_file]
 
+    ffmpeg_logger.addHandler(ffmpeg_handler)
+
+    # Set the output video file path
+    output_video_file = 'static/files/output.mp4'
+
+    # Define ffmpeg parameters for video processing
+    ffmpeg_params = [
+        "-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-",
+        "-c:v", "libx264", "-crf", "18", "-preset", "slow", output_video_file
+    ]
     final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac", logger=ffmpeg_logger.info, temp_audiofile="temp-audio.m4a", remove_temp=True, ffmpeg_params=ffmpeg_params)
 
 @app.route('/', methods=['GET', 'POST'])
