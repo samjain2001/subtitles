@@ -104,16 +104,7 @@ def processFile(filePath):
 
     final_video.fps = video.fps
 
-    ffmpeg_logger = logging.getLogger("FFMPEG")
-    ffmpeg_logger.setLevel(logging.DEBUG)
-
-    ffmpeg_handler = logging.StreamHandler()
-    ffmpeg_handler.setLevel(logging.DEBUG)
-
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    ffmpeg_handler.setFormatter(formatter)
-
-    ffmpeg_logger.addHandler(ffmpeg_handler)
+    
 
     # Set the output video file path
     output_video_file = 'static/files/output.mp4'
@@ -123,7 +114,7 @@ def processFile(filePath):
         "-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-",
         "-c:v", "libx264", "-crf", "18", "-preset", "slow", output_video_file
     ]
-    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac", logger=lambda msg: ffmpeg_logger.info(msg), temp_audiofile="temp-audio.m4a", remove_temp=True, ffmpeg_params=ffmpeg_params)
+    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac", temp_audiofile="temp-audio.m4a", remove_temp=True, ffmpeg_params=ffmpeg_params)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
