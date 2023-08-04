@@ -100,7 +100,7 @@ def processFile(filePath):
     print("Output file name: ", output_video_file)
  
 
-    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac")
+    final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac",logger=get_setting("FFMPEG_LOGGER"))
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
