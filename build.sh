@@ -6,4 +6,6 @@ apt-get install -y imagemagick
 pip install --upgrade moviepy
 pip install Flask
 pip show Flask
+ffmpeg -version
+
 
