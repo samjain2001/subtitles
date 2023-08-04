@@ -16,6 +16,7 @@ file_response = ''
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['UPLOAD_FOLDER'] = 'static/files'
+os.environ['FFMPEG_BINARY'] = '/usr/bin/ffmpeg'
 
 font_directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static')
 os.environ['MAGICK_FONT_PATH'] = font_directory
