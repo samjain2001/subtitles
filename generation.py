@@ -26,7 +26,7 @@ class UploadFileForm(FlaskForm):
 def time_to_seconds(time_obj):
     return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
-def create_subtitle_clips(subtitles, videosize, fontsize=24, font='Arial', color='yellow', debug=False):
+def create_subtitle_clips(subtitles, videosize, fontsize=24, font='Arial.ttf', color='yellow', debug=False):
     font_with_path = os.path.join(font_directory, font)
     subtitle_clips = []
     
