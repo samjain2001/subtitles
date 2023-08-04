@@ -113,7 +113,8 @@ def processFile(filePath):
     
     # Add the handler to the logger
     ffmpeg_logger.addHandler(ffmpeg_handler)
-    
+    ffmpeg_params = ["-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-", "-c:v", "libx264", "-crf", "18", "-preset", "slow", output_video_file]
+
     final_video.write_videofile(output_video_file, codec="libx264", audio_codec="aac")
 
 @app.route('/', methods=['GET', 'POST'])
