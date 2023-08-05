@@ -99,12 +99,7 @@ def processFile(filePath):
 
     # Update ffmpeg_params for video processing
     output_video_file = 'static/files/output.mp4'
-    ffmpeg_params = [
-    "-y", "-f", "image2pipe", "-c:v", "png", "-r", "30", "-i", "-",
-    "-c:v", "libx264", "-crf", "18", "-preset", "slow",
-    "-c:a", "aac",  
-    output_video_file
-]
+    
 
     # Concatenate the subtitle clips with the original video
     final_video = CompositeVideoClip([video] + subtitle_clips, size=video.size).set_audio(video.audio)
@@ -114,7 +109,6 @@ def processFile(filePath):
     final_video.write_videofile(
     output_video_file,
     codec="mpeg4", audio_codec="aac",
-    ffmpeg_params=ffmpeg_params
 )
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
